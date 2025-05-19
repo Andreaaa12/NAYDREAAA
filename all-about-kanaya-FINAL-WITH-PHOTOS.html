@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All About Kanaya</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(to bottom, #ffe6f0, #ffd6e0);
+      overflow-x: hidden;
+      color: #5a0033;
+      position: relative;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    .heart {
+      font-size: 3em;
+      color: red;
+      animation: pulse 1.5s infinite;
+    }
+    .slide {
+      display: none;
+      font-size: 1.3em;
+      padding: 30px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 15px rgba(255, 192, 203, 0.6);
+      margin-bottom: 20px;
+      animation: fadeIn 1s ease-in-out;
+    }
+    .slide.active { display: block; }
+    .buttons button {
+      background-color: #ff4d88;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px;
+      color: white;
+      border-radius: 12px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .buttons button:hover { background-color: #ff1a66; }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .petal {
+      position: fixed;
+      top: -50px;
+      color: #e6005c;
+      font-size: 20px;
+      animation: fall 8s linear infinite;
+      z-index: 1;
+    }
+    @keyframes fall {
+      0% { top: -50px; transform: rotate(0); }
+      100% { top: 100vh; transform: rotate(360deg); }
+    }
+    .quote {
+      margin: 30px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.5);
+      border-left: 4px solid pink;
+      font-style: italic;
+      max-width: 600px;
+      min-height: 80px;
+    }
+    .time-counter {
+      margin-top: 30px;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+    .letter {
+      margin: 40px auto;
+      background: #fff0f5;
+      padding: 30px;
+      border-radius: 15px;
+      border: 2px dashed #ff66b2;
+      text-align: left;
+      animation: fadeIn 2s ease-in-out;
+      font-style: italic;
+      max-width: 600px;
+    }
+    h1 {
+      text-shadow: 0 0 5px #ff3399, 0 0 10px #ff3399, 0 0 15px #ff66b2;
+    }
+    .star {
+      position: fixed;
+      width: 2px;
+      height: 2px;
+      background: white;
+      box-shadow: 0 0 8px white;
+      animation: twinkle 2s infinite;
+      z-index: 0;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>All About Kanaya</h1>
+    <div class="heart">❤️</div>
+    <marquee behavior="scroll" direction="left" scrollamount="6" style="color:#d1005b; font-weight:bold; margin-top: 20px;">
+      You are my everything, Kanaya 💗 | "Kita Bersama" - Sheila on 7 is playing 🎶 | Made with love by Andrea Nichol 💕
+    </marquee>
+
+    <div class="quote" id="quoteBox">“You are my today and all of my tomorrows.”</div>
+
+    <div class="slide active">
+      <h2>When I Met You</h2>
+      <p>That moment changed everything. Suddenly, the world became poetry.</p>
+    </div>
+    <div class="slide">
+      <h2>What You Mean to Me</h2>
+      <p>You are not just the reason I smile — you're the reason I believe in love.</p>
+    </div>
+    <div class="slide">
+      <h2>My Favorite Place</h2>
+      <p>Anywhere with you, Kanaya, is my favorite place to be.</p>
+    </div>
+
+    
+    <div class="slide">
+      <h2>Special Moments Together</h2>
+      <p>Setiap momen bersamamu selalu penuh tawa dan cinta 💕</p>
+      <img src="Gambar WhatsApp 2025-05-19 pukul 09.32.17_c65ac3eb.jpg" alt="Happy Moments" style="width: 100%; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); margin-top: 20px;">
+    
+      <button onclick="showRandomPhoto()">📸 Nostalgia Foto</button>
+</div>
+
+<div class="buttons">
+      <button onclick="prevSlide()">← Previous</button>
+      <button onclick="nextSlide()">Next →</button>
+      <button onclick="surpriseMessage()">🎁 Surprise Me</button>
+    </div>
+
+    <div class="time-counter" id="timeTogether">We’ve been in love for: ...</div>
+    <div class="time-counter" id="nextAnniversary">Counting down to our next anniversary...</div>
+
+    <div class="letter">
+      <h2>💌 A Love Letter to You</h2>
+      <p>
+        My dearest Kanaya,<br><br>
+        From the day we met, you've painted my world with colors I never knew existed.  
+        Your smile is my sunrise, your laugh is my favorite song,  
+        and your presence is my peace.  
+        I can't wait to build a lifetime of memories with you.<br><br>
+        Forever yours,<br>
+        Andrea Nichol 💖
+      </p>
+    </div>
+  </div>
+
+  <div style="margin-top: 40px; text-align: center;">
+    <h2>🎶 Our Song: "Kita" - Sheila on 7</h2>
+    <audio controls autoplay loop>
+      <source src="Sheila On 7 - Kita.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <script>
+    function createPetals() {
+      for (let i = 0; i < 30; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        petal.innerHTML = '🌹';
+        petal.style.left = Math.random() * 100 + 'vw';
+        petal.style.animationDuration = (5 + Math.random() * 5) + 's';
+        petal.style.fontSize = (14 + Math.random() * 10) + 'px';
+        document.body.appendChild(petal);
+      }
+    }
+    function createStars() {
+      for (let i = 0; i < 100; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.top = Math.random() * 100 + 'vh';
+        star.style.left = Math.random() * 100 + 'vw';
+        document.body.appendChild(star);
+      }
+    }
+    createPetals();
+    createStars();
+
+    const slides = document.querySelectorAll('.slide');
+    let current = 0;
+    function showSlide(index) {
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+    }
+    function nextSlide() {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }
+    function prevSlide() {
+      current = (current - 1 + slides.length) % slides.length;
+      showSlide(current);
+    }
+
+    const quotes = [
+      "You are my heart's favorite place.",
+      "Forever with you wouldn’t be enough.",
+      "I love you more each day.",
+      "You make the ordinary, extraordinary.",
+      "My soul found its home in you.",
+      "Every moment with you is my favorite.",
+      "Loving you is like breathing — effortless and essential."
+    ];
+    let quoteIndex = 0;
+    function rotateQuote() {
+      document.getElementById("quoteBox").innerText = quotes[quoteIndex];
+      quoteIndex = (quoteIndex + 1) % quotes.length;
+    }
+    setInterval(rotateQuote, 10000);
+
+    const startDate = new Date("2025-01-29T00:00:00");
+    function updateTimeTogether() {
+      const now = new Date();
+      const diff = now - startDate;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      document.getElementById("timeTogether").innerText =
+        `We’ve been in love for: ${days} beautiful days 💖`;
+    }
+    function updateAnniversaryCountdown() {
+      const now = new Date();
+      let next = new Date(now.getFullYear(), 0, 29);
+      if (now > next) next.setFullYear(next.getFullYear() + 1);
+      const diff = next - now;
+      const daysLeft = Math.ceil(diff / (1000 * 60 * 60 * 24));
+      document.getElementById("nextAnniversary").innerText =
+        `Only ${daysLeft} days until our next anniversary on Jan 29 🎉`;
+    }
+    function surpriseMessage() {
+      const messages = [
+        "I love you more than words can say 💖",
+        "You're my dream come true 🌙",
+        "Can't imagine life without you 🌹",
+        "You're the most beautiful chapter of my life 📖",
+        "Every second with you is heaven 💫"
+      ];
+      alert(messages[Math.floor(Math.random() * messages.length)]);
+    }
+    updateTimeTogether();
+    updateAnniversaryCountdown();
+  
+    function showRandomPhoto() {
+      const images = [
+        "Gambar WhatsApp 2025-05-19 pukul 09.32.17_c65ac3eb.jpg",
+        "Gambar WhatsApp 2025-05-19 pukul 09.32.07_20ad489a.jpg",
+        "Gambar WhatsApp 2025-05-19 pukul 09.32.06_a8bde7eb.jpg"
+      ];
+      const img = images[Math.floor(Math.random() * images.length)];
+      const photoWindow = window.open("", "_blank", "width=600,height=600");
+      photoWindow.document.write(`<title>Kenangan Manis</title><img src="${img}" style="width:100%; border-radius:20px;">`);
+    }
+
+</script>
+</body>
+</html>
